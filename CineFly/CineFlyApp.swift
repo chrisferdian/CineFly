@@ -12,7 +12,9 @@ import SwiftData
 struct CineFlyApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            MovieEntity.self,
+            CachedSearch.self,
+            CachedMovie.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +27,7 @@ struct CineFlyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView(context: sharedModelContainer.mainContext)
         }
         .modelContainer(sharedModelContainer)
     }
